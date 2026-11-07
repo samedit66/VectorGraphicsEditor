@@ -1,10 +1,11 @@
+from pathlib import Path
+
 from PyQt5.QtCore import *
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from EditorController import EditorController
 from EditorModel import EditorModel
-import keyboard
 
 class GraphicsScene(QGraphicsScene):
     clicked = pyqtSignal(QPointF)
@@ -107,36 +108,37 @@ class View(QMainWindow):
         self.show()
 
     def set_actions(self):
+        icons = Path(__file__).resolve().parent / "images"
         # Тул бар
         self.figure_toolbar = QToolBar("figure")
         self.figure_toolbar.setIconSize(QSize(14, 14))
         self.basicToolBar = self.addToolBar(self.figure_toolbar)
         # кнопка line
-        self.line_action = QAction(QIcon("images/line.png"), 'line', self)
+        self.line_action = QAction(QIcon(str(icons / "line.png")), 'line', self)
         self.line_action.setStatusTip("line")
         self.figure_toolbar.addAction(self.line_action)
         # кнопка rectangle
-        self.rect_action = QAction(QIcon("images/rect.png"), 'rectangle', self)
+        self.rect_action = QAction(QIcon(str(icons / "rect.png")), 'rectangle', self)
         self.rect_action.setStatusTip("rect")
         self.figure_toolbar.addAction(self.rect_action)
         # кнопка круг
-        self.circle_action = QAction(QIcon("images/circle.ico"), 'circle', self)
+        self.circle_action = QAction(QIcon(str(icons / "circle.ico")), 'circle', self)
         self.circle_action.setStatusTip("circle")
         self.figure_toolbar.addAction(self.circle_action)
         # кнопка select
-        self.select_action = QAction(QIcon("images/select.ico"), 'select', self)
+        self.select_action = QAction(QIcon(str(icons / "select.ico")), 'select', self)
         self.select_action.setStatusTip("select")
         self.figure_toolbar.addAction(self.select_action)
         #group
-        self.group_action = QAction(QIcon("images/group.ico"), 'group', self)
+        self.group_action = QAction(QIcon(str(icons / "group.ico")), 'group', self)
         self.group_action.setStatusTip("group")
         self.figure_toolbar.addAction(self.group_action)
         #ungroup
-        self.ungroup_action = QAction(QIcon("images/ungroup.ico"), 'ungroup', self)
+        self.ungroup_action = QAction(QIcon(str(icons / "ungroup.ico")), 'ungroup', self)
         self.ungroup_action.setStatusTip("ungroup")
         self.figure_toolbar.addAction(self.ungroup_action)
         # кнопка очистки
-        self.trash_action = QAction(QIcon("images/trash.png"), 'trash', self)
+        self.trash_action = QAction(QIcon(str(icons / "trash.png")), 'trash', self)
         self.trash_action.setStatusTip("trash")
         self.figure_toolbar.addAction(self.trash_action)
         # кнопка выбора цвета
